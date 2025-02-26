@@ -6,25 +6,15 @@ LED_PIN = 17  # GPIO pin where the LED is connected
 GPIO.setmode(GPIO.BCM)  # Use Broadcom pin numbering
 GPIO.setup(LED_PIN, GPIO.OUT)  # Set pin as an output
 
-print("Turning LED ON")
-GPIO.output(LED_PIN, GPIO.HIGH)  # Turn LED ON
-time.sleep(2)  # Wait for 2 seconds
+try:
+  while True:
+    GPIO.output(LED_PIN, GPIO.HIGH)  # Turn on LED
+    time.sleep(1)  # Wait for 1 second
+    GPIO.output(LED_PIN, GPIO.LOW)  # Turn off LED
+    time.sleep(1)  # Wait for 1 second
+except KeyboardInterrupt:
+  pass
+finally:
+  GPIO.cleanup()  # Clean up GPIO to reset the pin state
 
-print("Turning LED OFF")
-GPIO.output(LED_PIN, GPIO.LOW)  # Turn LED OFF
 
-print("Turning LED ON")
-GPIO.output(LED_PIN, GPIO.HIGH)  # Turn LED ON
-time.sleep(2)  # Wait for 2 seconds
-
-print("Turning LED OFF")
-GPIO.output(LED_PIN, GPIO.LOW)  # Turn LED OFF
-
-print("Turning LED ON")
-GPIO.output(LED_PIN, GPIO.HIGH)  # Turn LED ON
-time.sleep(2)  # Wait for 2 seconds
-
-print("Turning LED OFF")
-GPIO.output(LED_PIN, GPIO.LOW)  # Turn LED OFF
-
-GPIO.cleanup()  # Clean up GPIO to reset the pin state

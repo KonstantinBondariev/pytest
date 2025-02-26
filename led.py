@@ -14,18 +14,24 @@ def log_pin_states():
     except RuntimeError:
       print(f"Pin {pin}: Not available")
 
-log_pin_states()
 
 try:
   while True:
+    log_pin_states()
+
     GPIO.output(LED_PIN, GPIO.HIGH)  # Turn on LED
+    log_pin_states()
     time.sleep(10)  # Wait for 1 second
+
     GPIO.output(LED_PIN, GPIO.LOW)  # Turn off LED
+    log_pin_states()
     time.sleep(10)  # Wait for 1 second
 except KeyboardInterrupt:
   pass
 finally:
   print("Cleaning up")
   GPIO.cleanup()  # Clean up GPIO to reset the pin state
+  log_pin_states()
+
 
 
